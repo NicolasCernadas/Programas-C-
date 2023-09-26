@@ -14,19 +14,19 @@ int main(){
     if (car1<=car2 && car3<=car2 && car1<=car3){
         printf("El orden es: %c, %c, %c.",car1,car3,car2);
     }
-    if (car1<=car2 && car3<=car2 && car3<=car1){
+    else if (car1<=car2 && car3<=car2 && car3<=car1){
         printf("El orden es: %c, %c, %c.",car3,car1,car2);
     }
-    if (car2<=car1 && car3<=car1 && car2<=car3){
+    else if (car2<=car1 && car3<=car1 && car2<=car3){
         printf("El orden es: %c, %c, %c.",car2,car3,car1);
     }
-    if (car2<=car1 && car3<=car1 && car3<=car2){
+    else if (car2<=car1 && car3<=car1 && car3<=car2){
         printf("El orden es: %c, %c, %c.",car3,car2,car1);
     }
-    if (car1<=car3 && car2<=car3 && car1<=car2){
+    else if (car1<=car3 && car2<=car3 && car1<=car2){
         printf("El orden es: %c, %c, %c.",car1,car2,car3);
     }
-    if (car1<=car3 && car2<=car3 && car2<=car1){
+    else if (car1<=car3 && car2<=car3 && car2<=car1){
         printf("El orden es: %c, %c, %c.",car2,car1,car3);
     }
 
