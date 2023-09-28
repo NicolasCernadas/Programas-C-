@@ -1,0 +1,113 @@
+//Ejercicio 3:
+
+#include<stdio.h>
+
+
+int main(){
+    char cadena[50],caracter;
+
+    printf("Ingrese su oracion: ");
+    gets(cadena);
+
+    for (int i=0; i<=cadena[i]; i++){
+        caracter = cadena[i];
+            if (caracter == 'a' || caracter == 'e'||caracter== 'i'||caracter == 'o'||caracter == 'u'){
+                caracter = ' ';
+
+        }
+        printf("%c",caracter);
+    }
+
+
+
+
+    return 0;
+}
+
+//Ejercicio 2:
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main(){
+
+    int numero_generado,numero_ingresado,contador_intentos=1;
+    srand(time(NULL));
+    numero_generado=rand()%100+1;
+
+    printf("Cual crees que fue el numero generado? tenes 3 intentos!\nPrimer intento : ");
+    scanf("%i",&numero_ingresado);
+
+   while (3>contador_intentos){
+    if(numero_generado<numero_ingresado){
+        printf("Upa, se te fue la mano!\n");
+        printf("Intenta denuevo!: ");
+        scanf("%i",&numero_ingresado);
+    contador_intentos++;
+    }
+    if(numero_generado>numero_ingresado){
+        printf("Te quedaste corto!\n");
+        printf("Intenta denuevo!: ");
+        scanf("%i",&numero_ingresado);
+    contador_intentos++;
+    }
+    if(numero_generado==numero_ingresado){
+        printf("\n¡Felicidades!\n"); break;
+    }
+   }
+    if (numero_generado!=numero_ingresado)
+    printf("Lo sentimos, mas suerte la proxima!\nNumero generado aleatoriamente: %i",numero_generado);
+
+
+    return 0;
+}
+
+//Ejercicio 1:
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main(){
+    int grupos,importe,clientes,contador=0;
+    char clase;
+
+
+    printf("Cuantos grupos desea procesar?: ");
+    scanf("%i",&grupos);
+    contador++;
+
+    for (int i=1; i<=grupos; i++){
+        printf("Grupo %i: Facturacion.\nIngrese la clase a procesar: ",i);
+        fflush(stdin);
+        scanf("%c",&clase);
+        if (clase=='X'){
+            printf("Ingrese el importe total del grupo: ");
+            scanf("%i",&importe);
+            fflush(stdin);
+            printf("Ingrese la cantidad de clientes para el grupo %c: ",clase);
+            scanf("%i",&clientes);
+        }
+        if (clase=='Y'){
+            printf("Ingrese el importe total del grupo: ");
+            scanf("%i",&importe);
+            fflush(stdin);
+            printf("Ingrese la cantidad de clientes para el grupo %c: ",clase);
+            scanf("%i",&clientes);
+        }
+        if (clase=='Z'){
+            printf("Ingrese el importe total del grupo: ");
+            scanf("%i",&importe);
+            fflush(stdin);
+            printf("Ingrese la cantidad de clientes para el grupo %c: ",clase);
+            scanf("%i",&clientes);
+        }
+
+
+    }
+
+
+    return 0;
+}
+
