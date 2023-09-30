@@ -1,0 +1,41 @@
+//Calculadora
+#include<iostream>
+#include<time.h>
+#include <stdio.h>
+
+int main (){
+    int num1,num2;
+    char operacion;
+    float res;
+
+    printf("Introduzca el primer numero: ");
+    scanf("%i",&num1);
+    fflush(stdin);
+    printf("Introduzca el segundo numero: ");
+    scanf("%i",&num2);
+    fflush(stdin);
+    printf("\n---------------\n");
+    printf("\nQue operacion desea realizar?\n\nMultiplicacion (x)\nDivision entera (/)\nSuma (+)\nResta(-)\nEl resto de una division (%)\nIngrese su eleccion: ");
+    scanf("%c",&operacion);
+    fflush(stdin);
+
+    if (operacion == '/')
+        res = num1 / num2;
+    else
+        if (operacion == 'x')
+        res = num1 * num2;
+    else
+        if (operacion == '+')
+        res = num1 + num2;
+    else
+        if (operacion == '-')
+        res = num1 - num2;
+    else
+        if (operacion == '%')
+        res = num1 % num2;
+
+    printf("\nEl resultado de la operacion %i %c %i = %.2f\n",num1,operacion,num2,res);
+    printf("\n---------------\n");
+
+    return 0;
+}
