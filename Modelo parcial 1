@@ -1,0 +1,26 @@
+// Ejercicio 3
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main(){
+    int opcionComputadora;
+    char oracion[100];
+
+    printf("Escriba la oracion: ");
+    fflush(stdin);
+    gets(oracion);
+
+    for (int i=0; oracion[i]!='\0';i++){
+        if (oracion[i] >= 65 && oracion[i] <= 90){
+            oracion[i]++;
+        }
+        else if (oracion[i] >= 97 && oracion[i] <= 122){
+            oracion[i]++;
+        }
+    }
+    printf("%s",oracion);
+
+    return 0;
+}
