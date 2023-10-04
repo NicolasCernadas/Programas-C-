@@ -1,3 +1,66 @@
+//Ejercicio 2
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main(){
+    int opcionComputadora;
+    char usuario;
+    srand(time(NULL));
+    opcionComputadora=rand()%3; //0 piedra, 1 papel, 2 tijera
+
+    printf("Escoja:\ni) Piedra\na) Papel\nt) Tijera\nEleccion: ");
+    fflush(stdin);
+    scanf("%c",&usuario);
+
+    printf("%i\n",opcionComputadora);
+    fflush(stdin);
+
+    if(usuario!= 'a' && usuario != 'i' && usuario != 't')
+        printf("'%c' No era una opcion.",usuario);
+    else if (opcionComputadora == 0){
+        switch(usuario){
+            case 'i':
+            printf("Computadora eligio Piedra\nUsuario eligio Piedra\nEs un empate!");
+            break;
+            case 't':
+            printf("Computadora eligio Piedra\nUsuario eligio Tijera\nGano computadora!");
+            break;
+            case 'a':
+            printf("Computadora eligio Piedra\nUsuario eligio Papel\nGano el usuario!");
+            break;
+        }
+    }
+    else if (opcionComputadora == 1){
+        switch(usuario){
+            case 'i':
+            printf("Computadora eligio Papel\nUsuario eligio Piedra\nGano computadora!");
+            break;
+            case 't':
+            printf("Computadora eligio Papel\nUsuario eligio Tijera\nGano usuario!");
+            break;
+            case 'a':
+            printf("Computadora eligio Papel\nUsuario eligio Papel\nEs un empate!");
+            break;
+        }
+    }
+    else if (opcionComputadora == 2){
+        switch(usuario){
+            case 'i':
+            printf("Computadora eligio Tijera\nUsuario eligio Piedra\nGano usuario!");
+            break;
+            case 't':
+            printf("Computadora eligio Tijera\nUsuario eligio Tijera\nEs un empate!");
+            break;
+            case 'a':
+            printf("Computadora eligio Tijera\nUsuario eligio Papel\nGano computadora!");
+            break;
+        }
+    }
+    return 0;
+}
+
 // Ejercicio 3
 
 #include<stdio.h>
