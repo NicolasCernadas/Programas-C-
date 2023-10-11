@@ -1,0 +1,49 @@
+//
+#include <stdio.h>
+void printancia(){
+    printf("esto es la funcion printancia \n");
+}
+void sumaEntera(int a, int b){
+    int c = a+b;
+    printf("%i",c);
+}
+int sumaEnteraD(int a, int b){
+    int c = a+b;
+    return c;
+}
+void main() {
+    printf("Hello, World!\n");
+    printancia();
+    sumaEntera(3,6);
+    int c = sumaEnteraD(3,6);
+    //return 0;
+}
+//
+**FUNCIONES LOCALES: terminan dentro de sus parametros ({})**
+
+void: No devuelve valores
+int: Si devuelve valores
+
+1°)Creacion de funciones VOID: (que no devuelven valores)
+
+void "nombre de la funcion"('lo que vaya a recibir la funcion'){
+  (lo que quieras que haga la funcion "nombre de la funcion");
+}
+
+ejemplo:
+void sumaEntera(int a, int b){
+  int c= a + b;
+printf("&i",c);
+}
+Para llamar a la funcion creada en cualquier parte del codigo:
+"nombre de la funcion";
+
+2°)Creacion de funciones INT: (devuelve valores)
+
+ejemplo:
+int sumaEntera(int a, int b){
+  int c= a + b;
+  return c;
+}
+Para llamar a la funcion creada en cualquier parte del codigo:
+int c= sumaEntera(a,b);
