@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+void menu(){
+    printf("Si desea sumar: (1)\n");
+    printf("Si desea restar: (2)\n");
+    printf("Si desea multiplicar: (3)\n");
+    printf("Si desea dividir: (4)\n");
+}
+int suma(int op1, int op2){
+    op1 += op2;
+    return op1;
+}
+int resta(int op1, int op2){
+    op1 -= op2;
+    return op1;
+}
+int multiplicacion(int op1, int op2){
+    int res= op1 * op2;
+    return res;
+}
+int division(int op1, int op2){
+    int res = op1 / op2;
+    return res;
+}
+
+int seleccion(int dato){
+    int a=0;
+    int b=0; 
+    int resultado = 0;
+    printf("Ingresa los valores a operar: ");    
+    scanf("%i",&a);   
+    scanf("%i",&b);  
+
+    switch(dato){
+    case 1:
+      resultado = suma(a,b);
+      break;
+    case 2:
+      resultado = resta(a,b);
+      break;
+    case 3:
+      resultado = multiplicacion(a,b);  
+      break;
+    case 4:
+      resultado = division(a,b);  
+      break;  
+    default: printf("Elegi bien");
+      break;
+    }
+    return resultado;
+}
+int main(){
+    printf("Bienvenidos a la calculadora\n");
+    menu();
+    int opcion= 0;
+    scanf("%i",&opcion);
+    int resultado = seleccion(opcion);
+    printf("El resultado es: %i",resultado);
+return 0;
+}
