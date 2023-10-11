@@ -20,6 +20,7 @@ void main() {
 }
 //
 **FUNCIONES LOCALES: terminan dentro de sus parametros ({})**
+Memoria global: aquella que no esta creada en ninguna funcion, es igual para todo el codigo.
 
 void: No devuelve valores
 int: Si devuelve valores
