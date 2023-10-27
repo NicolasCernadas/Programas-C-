@@ -1,0 +1,31 @@
+#define ABIRETO 0
+
+#define CERRADO 180
+
+
+// Incluímos la librería para poder controlar el servo
+#include <Servo.h>
+
+// Declaramos la variable para controlar el servo
+Servo servoMotor;
+
+void setup() {
+  // Iniciamos el monitor serie para mostrar el resultado
+  Serial.begin(9600);
+
+  // Iniciamos el servo para que empiece a trabajar con el pin 9
+  servoMotor.attach(3);
+}
+
+void loop() {
+  
+  // Desplazamos a la posición 0º
+  servoMotor.write(ABIRETO);
+  // Esperamos 1 segundo
+  delay(5000);
+   
+  // Desplazamos a la posición 180º
+  servoMotor.write(CERRADO);
+  // Esperamos 1 segundo
+  delay(5000);
+}
