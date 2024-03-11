@@ -6,78 +6,177 @@ int main(){
 
 int a;
 int * p, ** pp; /*Puntero de puntero...(Especifico cantidad de ramas con '*')*/
-
 a = 5;
 p = &a; /*Declaro que el puntero apunte a la direccion de 'a'*/
 pp = &p;
-
 printf("Direccion de 'a'= %p\nDireccion a la que apunta 'p'= %p\nDireccion de 'p'= %p\nValor de 'a'= %d\nValor de 'p'= %d\n", &a, p, &p, a, *p);
 printf("Direccion a la que apunta 'pp'= %p\nDireccion de 'pp'= %p", pp, &pp);
 
-/*'p++': Cambiamos la direccion a la que apunta p*/
-/*'(*p)++': Cambiamos el valor de p al de la siguiente direccion */
-/*'*p++': Cambiamos la direccion a la que apunta, y el valor de p a la siguiente direccion */
+/*'p++': Cambiamos la direccion a la que apunta 'p'*/
+/*'(*p)++': Incrementamos el valor de la direccion a la que apunta 'p' en 1 */
 
 return 0;}
 
-## Ejemplitos (1)##
+## EJEMPLOS (1)##
 
 int main(){
 
 float a = 0.001, b = 0.003;
 float c, *pa, *pb;
-
 pa = &a;
 printf("'PA'=%p\n", pa);
-
 *pa = 2 * a; /*Si no pusieramos ninguna cuenta, podemos consultar el valor de 'a' llamando con '*pa'*/
 printf("Valor de 'PA'= 2 x 'a' = %.4f\n", *pa);
-
 pb = &b;
 printf("'PB'=%p\n", pb);
-
 c = 3 * (*pb - *pa); /*Aca estamos tomando el nuevo valor de 'pa', restandoselo a 'pb y multipicandolo x 3'*/
 printf("Valor de 'C' = 3 * (*pb - *pa) = %.10fn", c);
 
 return 0;}
 
-## Ejemplitos (2) ##
+## EJEMPLOS (2) ##
 
 int main(){
 
 int a, b, *p, *q, *r;
-
 char c, d, *m,*n;
-
 a=5;
-
 b=7;
-
 q=&a;
-
 p=q;
-
 *p=b;
-
 r=&b;
-
 printf("%d\n\n\n", *q);
-
 *r=*q;
-
 printf("a=%d, b=%d, *p=%d, *q=%d,*r=%d\n\n\n", a, b,*p,*q,*r);
-
 c='A';
-
 d='B';
-
 m=&c;
-
 n=&d;
-
 *m=*n;
-
 printf("Valor final de 'c'=%c\nValor final de 'd'=%c\nValor final de 'm'=%p\nValor final de 'n'=%p\nValor final de '*m'=%d\n",c , d, m, n, *m);
 
 return 0;}
+
+## EJEMPLOS (3) ##
+
+int main() {
+
+int n = 8, * ptr, **ptrp;
+printf("ptr sin nada asignado, es = %p\n", ptr);
+ptr = &n;
+ptrp = &ptr;
+printf("n es = %d\n", n);
+printf("&n es = %p\n", &n);
+printf("&ptr es = %p\n", &ptr);
+printf("*ptr una vez asignado a =&n, es = %d\n", *ptr);
+printf("ptr es = %p\n", ptr);
+n--;
+printf("n es despues de n--, es = %d\n", n);
+ptr++;
+printf("ptr es despues de ptr++ = %p\n", ptr);
+printf("*ptr es = %d\n", *ptr);
+printf("**ptrp despues de 'ptr++',sigue siendo = %p\nSolo cambio a donde apunta 'ptr', no su direccion\n", ptrp);
+printf(" %c%c Yo no puedo designar manualmente una direccion de memoria a una variable/puntero !!\n",173,173);
+
+return 0; }
+
+## EJEMPLOS (4) ##
+
+int main()
+{
+    const float pi=3.1416;
+    const float * ppi=&pi;
+    float rad, area;
+    float * prad=&rad;
+    float * parea=&area;
+    
+    printf("Ingrese el radio\n");
+    scanf("%f",prad); /*Si guardamos algo en un puntero, lo leo directamente con el puntero, no hace falta el '&'*/
+    
+    *parea=*ppi*(*prad * *prad);
+    printf("El area es %.2f\n", *parea);
+
+    getchar();
+    return 0;
+}
+
+## EJEMPLO (5) ##
+
+int main()
+{
+    int a=10;
+    int b=20;
+    int z=10;
+//Puntero constante, objeto variable
+//si queremos que un puntero sea constante, es decir, que su dirección de memoria no
+//pueda cambiar. Entonces debemos indicar const delante del nombre del puntero
+//y no del tipo de dato:
+    int * const p = &a; //Asi definimos un puntero constante
+    *p = 15; // Correcto: El valor apuntado es variable.
+//En este caso la dirección de memoria es inalterable pero el valor se puede cambiar: prueba
+//p=&b; //ERROR: p es constante.// Error: este puntero es solo de lectura
+
+//Un puntero constante (p) es uno al que no puedes cambiar su "valor", es decir, no puedes
+//cambiar la dirección a la que apunta
+    /************************************************************************************/
+//Puntero a valor constante
+//Ahora bien, si es un puntero a un valor constante, no podremos modificar el valor
+//directamente pero sí podremos cambiarlo mediante la dirección de memoria:
+
+    int aa=15;
+    int bb=25;
+//Puntero variable a un dato constante
+    const int * pp = &aa; 
+//*pp = 33; // ERROR: el valor apuntado por pp es constante. // Error: este puntero es solo de lectura
+    pp=&bb; //Correcto: pp pasa a apuntar a un nuevo objeto.
+//Puntero a constante
+//Un puntero a un valor constante (p) es un puntero para el cual está prohibido modificar
+//el valor  al que apunta.
+
+//Finalmente:
+//Nada impide tener un puntero constante que apunte a un valor constante.
+//La declaración sería:
+
+    const int *const ptr = &z;  // Por ejemplo
+
+//En este caso ya no dejará reasignar un valor a ptr para que apunte
+//a otro lugar, ni tampoco dejará asignar un valor a *ptr para cambiar el valor
+//al que está apuntando.
+
+    getchar();
+    return 0;
+}
+
+## EJEMPLO (6) ##
+
+int  main(){
+int n=5;
+
+int *p;
+double *q;
+void *r;
+
+printf("n: %p\n", &n );
+printf("p: %p\n", p );
+printf("q: %p\n", q );
+printf("r: %p\n\n", r );
+r=&n;
+printf("r: %p\n", r );
+//printf("*r: %p\n", *r );
+printf("*r: %d\n\n", *(int*)r);
+
+p=q;
+printf("*p: %d\n", *p );
+printf("p: %p\n", p );
+printf("q: %p\n\n", q );
+
+p=(int*)q;
+
+printf("*p: %d\n", *p );
+printf("*q: %d\n", *q );
+
+return 0;
+
+}
 
