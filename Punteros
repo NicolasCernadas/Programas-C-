@@ -1,0 +1,83 @@
+#include<stdio.h>
+
+/* Practica de Variables puntero */
+
+int main(){
+
+int a;
+int * p, ** pp; /*Puntero de puntero...(Especifico cantidad de ramas con '*')*/
+
+a = 5;
+p = &a; /*Declaro que el puntero apunte a la direccion de 'a'*/
+pp = &p;
+
+printf("Direccion de 'a'= %p\nDireccion a la que apunta 'p'= %p\nDireccion de 'p'= %p\nValor de 'a'= %d\nValor de 'p'= %d\n", &a, p, &p, a, *p);
+printf("Direccion a la que apunta 'pp'= %p\nDireccion de 'pp'= %p", pp, &pp);
+
+/*'p++': Cambiamos la direccion a la que apunta p*/
+/*'(*p)++': Cambiamos el valor de p al de la siguiente direccion */
+/*'*p++': Cambiamos la direccion a la que apunta, y el valor de p a la siguiente direccion */
+
+return 0;}
+
+## Ejemplitos (1)##
+
+int main(){
+
+float a = 0.001, b = 0.003;
+float c, *pa, *pb;
+
+pa = &a;
+printf("'PA'=%p\n", pa);
+
+*pa = 2 * a; /*Si no pusieramos ninguna cuenta, podemos consultar el valor de 'a' llamando con '*pa'*/
+printf("Valor de 'PA'= 2 x 'a' = %.4f\n", *pa);
+
+pb = &b;
+printf("'PB'=%p\n", pb);
+
+c = 3 * (*pb - *pa); /*Aca estamos tomando el nuevo valor de 'pa', restandoselo a 'pb y multipicandolo x 3'*/
+printf("Valor de 'C' = 3 * (*pb - *pa) = %.10fn", c);
+
+return 0;}
+
+## Ejemplitos (2) ##
+
+int main(){
+
+int a, b, *p, *q, *r;
+
+char c, d, *m,*n;
+
+a=5;
+
+b=7;
+
+q=&a;
+
+p=q;
+
+*p=b;
+
+r=&b;
+
+printf("%d\n\n\n", *q);
+
+*r=*q;
+
+printf("a=%d, b=%d, *p=%d, *q=%d,*r=%d\n\n\n", a, b,*p,*q,*r);
+
+c='A';
+
+d='B';
+
+m=&c;
+
+n=&d;
+
+*m=*n;
+
+printf("Valor final de 'c'=%c\nValor final de 'd'=%c\nValor final de 'm'=%p\nValor final de 'n'=%p\nValor final de '*m'=%d\n",c , d, m, n, *m);
+
+return 0;}
+
