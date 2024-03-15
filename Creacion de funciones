@@ -48,3 +48,51 @@ int sumaEntera(int a, int b){
 }
 Para llamar a la funcion creada en cualquier parte del codigo:
 int c= sumaEntera(a,b);
+
+##EJEMPLO FUNCIONES##
+
+#include <stdio.h>
+
+void multiplo (int x, int y);
+int main(){
+    int n1, n2;
+    do{
+        printf("Ingresa 2 numeros: ");
+        scanf("%d%d",&n1,&n2);
+        if (n1>n2){
+            printf("El segundo es menor al primero, ingrese primero un numero y despues uno mayor\n");
+        }
+    } while (n1>n2);
+    multiplo(n1, n2);
+return 0;}
+
+void multiplo (int x, int y){
+    if ((y%x)==0){
+        printf("%d es multiplo de %d",x,y);
+    }
+    else {
+        printf("%d NO es multiplo de %d",x,y);
+    }
+}
+
+#include <stdio.h>
+
+void cuadrados_anteriores(int x);
+
+int main(){
+    int n1;
+    printf("Ingrese el numero maximo a sumar los cuadrados: ");
+    scanf("%d",&n1);
+    cuadrados_anteriores(n1);
+return 0;}
+
+void cuadrados_anteriores(int x){
+int cuadrado, suma=0;
+    for (int i=1;i<=x;i++){
+        printf("N = %d\n",i);
+        cuadrado = i*i;
+        printf("N * N = %d\n",cuadrado);
+        suma += cuadrado;
+        printf("La suma va: %d\n\n",suma);
+    }
+}
