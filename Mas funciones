@@ -1,0 +1,53 @@
+# include <stdio.h>
+
+void ordenados (float * x, float * y, float * z);
+
+int main(){
+float a,b,c;
+
+printf("Ingresa un valor: ");
+scanf("%f",&a);
+printf("Ingresa un valor: ");
+scanf("%f",&b);
+printf("Ingresa un valor: ");
+scanf("%f",&c);
+
+ordenados(&a,&b,&c);
+
+return 0;}
+
+void ordenados (float * x, float * y, float * z){
+    if (*x>*y && *x>*z && *y>*z){
+        printf("%f, %f, %f",*x,*y,*z);
+    }
+    else if (*x>*y && *x>*z && *z>*y){
+        printf("%f, %f, %f",*x,*z,*y);
+    }
+    else if (*x>*y && *y==0 && *z==0){
+        printf("%f, 0, 0",*x);
+    }
+    else if (*y>*x && *y>*z && *x>*z){
+        printf("%f, %f, %f",*y,*x,*z);
+    }
+    else if (*y>*x && *y>*z && *z>*x){
+        printf("%f, %f, %f",*y,*z,*x);
+    }
+    else if (*y>*x && *x==0 && *z==0){
+        printf("%f, 0, 0",*y);
+    }
+    else if (*z>*x && *z>*y && *x>*y){
+        printf("%f, %f, %f",*z,*x,*y);
+    }
+    else if (*z>*x && *z>*y && *y>*x){
+        printf("%f, %f, %f",*z,*y,*x);
+    }
+    else if (*z>*x && *x==0 && *y==0){
+        printf("%f, 0, 0",*z);
+    }
+    else {
+        printf("Son todos iguales");
+    }
+}
+
+//
+
