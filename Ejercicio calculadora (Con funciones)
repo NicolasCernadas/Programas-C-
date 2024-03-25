@@ -58,3 +58,109 @@ int main(){
     printf("El resultado es: %i",resultado); 
 return 0; 
 }
+
+# Calculo de Areas con funciones #
+
+#include <stdio.h>
+
+void cuadrado();
+void menu ();
+void circulo();
+void rectangulo();
+void trapecio();
+void triangulo();
+
+int main(){
+    menu();
+return 0;
+}
+
+void menu (){
+    int seleccion;
+    printf("Ingresa un valor\n================\n1.Cuadrado\n2.Circulo\n3.Rectangulo\n4.Trapecio\n5.Triangulo\n0.Salir del programa\n\nSeleccion: ");
+    scanf("%d",&seleccion);
+    switch(seleccion){
+        case 1:
+            cuadrado();
+            break;
+            case 2:
+            circulo();
+            break;
+        case 3:
+            rectangulo();
+            break;
+        case 4:
+            trapecio();
+            break;
+        case 5:
+            triangulo();
+            break;
+
+        case 0:break;
+
+    }
+}
+
+void cuadrado(){
+    float lado, area;
+
+    printf("\nIngresa la medida de cualquiera de sus lados: ");
+    scanf("%f",&lado);
+
+    area = lado*lado;
+
+    printf("El area es: %.2f\n", area);
+    }
+
+void circulo(){
+    float radio, area;
+    float pi = 3.141518;
+
+    printf("\nIngresa el radio: ");
+    scanf("%f",&radio);
+
+    area = pi*(radio*radio);
+
+    printf("El area es: %.2f\n", area);
+    }
+
+void rectangulo(){
+    float lado1,lado2, area;
+
+    printf("\nIngresa alto del rectangulo: ");
+    scanf("%f",&lado1);
+    printf("\nAhora ingresa el ancho: ");
+    scanf("%f",&lado2);
+
+    area = lado2*lado1;
+
+    printf("El area es: %.2f\n", area);
+    }
+
+void trapecio(){
+    float base1,base2,area,altura;
+
+    printf("\nIngresa la primera de las bases del trapecio: ");
+    scanf("%f",&base1);
+    printf("\nIngresa la segunda de las bases del trapecio: ");
+    scanf("%f",&base2);
+    printf("\nAhora ingresa el alto: ");
+    scanf("%f",&altura);
+
+    area = ((base1 + base2)*altura/2);
+
+    printf("El area es: %.2f\n", area);
+    }
+
+void triangulo(){
+    float base,area,altura;
+
+    printf("\nIngresa la base del triangulo: ");
+    scanf("%f",&base);
+    printf("\nAhora ingresa la altura: ");
+    scanf("%f",&altura);
+
+    area = (base*altura)/2;
+
+    printf("El area es: %.2f\n", area);
+    }
