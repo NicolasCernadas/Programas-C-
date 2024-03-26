@@ -164,3 +164,123 @@ void triangulo(){
 
     printf("El area es: %.2f\n", area);
     }
+# PRacticas #
+
+#include<stdio.h>
+
+/*Completar el ejercicio*/
+
+/*Carga del vector*/
+void carga_vector(int v[], int d){
+int i;
+for(i = 0; i < d ; i++){
+    printf("Ingrese valor en v[%d]\n", i) ;
+    scanf("%d", &v[i]);
+ }
+}
+/*emisión del contenido del vector*/
+void emite_vector(int v[], int d){
+int i;
+for(i = 0; i < d ; i++)
+     printf("v[%d]=%d\n", i, v[i]);
+}
+/*Suma de los elementos del vector*/
+int suma_vector(int v[], int d){
+int i,suma=0;
+
+for(i = 0; i < d ; i++)
+     suma = suma + v[i];
+
+  return suma;
+}
+
+/*emisión de los elementos en las posiciones pares*/
+void elem_pos_impar(int v[], int d){
+int i;
+printf("\nLos elementos en las posiciones impares son:\n");
+for(i = 0; i < d ; i++){
+    if (i%2 == 1)
+         printf("v[%d]=%d\n", i, v[i]);
+}
+}
+
+int puntoc(int dim, int v[]){
+    int minimo;
+    minimo = v[0];
+    for (int i=1; i<dim; i++){
+        if (minimo > v [i])
+            minimo = v[i];
+    }
+    return minimo;
+}
+
+void puntoe(int dim, int v[]) {
+    int maximo = v[0];
+    int cantVeces = 0;
+    int aux[dim];
+    for (int i=0, i<dim, i++){
+        if (maximo < v[i]) {
+            maximo = v[i];
+            cantVeces = 1;   
+        }
+        if (maximo = v[i]) {
+            cantVeces++;
+            aux[i] = maximo;
+        }
+    
+    }
+    
+    
+}
+
+
+void puntod (int dim, int v[]){
+    int promedio, suma=0;
+
+    for (int i=0; i<dim; i++){
+        suma += v[i];
+    }
+    promedio = suma/dim;
+    printf("El promedio es %d\n", promedio);
+
+    printf("Los numeros mayores al promedio son:\n");
+    for(int i=0; i<dim; i++){
+        if(v[i] > promedio)
+        printf("%d\n",v[i]);
+    }
+}
+
+int main(){
+  const int dim = 5;
+  int v[dim];
+  int suma, minimo;
+
+/*a.	Cargar un vector de m elementos por teclado.
+Debes considerar que no podrá superar el máximo de elementos de vector (m=dimensión).*/
+carga_vector(v,dim);
+/*emitimos el contenido del vector para testear*/
+emite_vector(v,dim);
+
+/*b.	Calcular y emitir la suma de sus elementos. */
+suma = suma_vector(v,dim);
+printf("\nLa suma de los elementos del vector es %d\n", suma);
+
+//c. Calcular y emitir el mínimo del vector.
+minimo = puntoc(dim, v);
+printf("El minimo es %d\n", minimo);
+//d. Calcular y emitir el promedio de los valores del vector y los valores de aquellos que superaron ese promedio.
+puntod(dim, v);
+//e. Emitir el valor máximo, indicar la cantidad de veces que apareció y el número de orden en que fue ingresado.
+maximo()
+/*f.	Emitir los valores que son pares y los que están en posiciones impares (completar) */
+elem_pos_impar(v,dim);
+
+//g. Recorrer los elementos del vector hasta encontrar el número entero a que se ingresa por teclado.
+// Deberá retornar el número de elementos que ha leído hasta encontrar a. Si no lo encontró emitir
+// un mensaje al respecto.
+
+
+getchar();
+return 0;
+}
+
