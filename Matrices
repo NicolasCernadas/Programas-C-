@@ -1,0 +1,47 @@
+// # MATRICES #
+
+#include<stdio.h>
+
+int main(){
+
+    //declaracion de matrices: <tipo de dato><nombre de la matriz><nfilas><ncolumnas> = {{},{}}
+    //ejemplo:
+    //int matriz[2][3]= {{1,2,3},{4,5,6}}
+    //o
+    //int matriz[2][3]= {1,2,3,
+    //                   4,5,6}
+    //Asi definido, tendriamos lo siguiente:
+
+    //                                 COLUMNAS
+    //
+    //                              | 0  | 1  | 2  |
+    //                            --| ---|----|----|
+    //                             0|  1 |  2 |  3 |
+    //                    FILAS   --| ---|----|----|
+    //                             1|  4 |  5 |  6 |
+    //                            --|--------------|
+
+    //Las matrices, como los arrays y los espacios en memoria, empiezan el conteo en 0, teniendo asi 2 filas: 0 para la primera, 1 para la segunda
+    //(mismo para las columnas)
+    //EJEMPLO:
+    int matriz[100][100], filas, columnas;//Como le voy a pedir al usuario, pongo un numero cualquiera
+    printf("Ingrese el numero de filas, y despues el de columnas: ");
+    scanf("%d%d",&filas,&columnas);
+
+    //Ingresando la matriz
+    for(int i=0;i<filas;i++){
+        for (int j=0;j<columnas;j++){
+            printf("Ingrese el dato[%d][%d]: ",i,j);
+            scanf("%d",&matriz[i][j]);
+        }
+    }
+    //Mostrando la matriz
+    for(int i=0;i<filas;i++){
+        for (int j=0;j<columnas;j++){
+            printf("%d, ",matriz[i][j]);
+        }
+        printf("\n");
+    }
+
+return 0;
+}
