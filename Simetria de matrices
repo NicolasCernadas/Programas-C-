@@ -1,0 +1,38 @@
+# include<stdio.h>
+
+int main(){
+    int matriz[3][3] = {{1,7,4},
+                        {7,3,2},
+                        {4,2,1}};
+    int filas=3,columnas=3, flag=0;
+    //Descomentar para generar una matriz propia
+    //printf("Digite el numero de filas: ");
+    //scanf("%d",&filas);
+    //printf("Digite el numero de columnas: ");
+    //scanf("%d",&columnas);
+
+    //for (int i=0; i<filas; i++){
+    //    for (int j=0; j<columnas; j++){
+    //        printf("Digite el caracter [%d][%d]= ",i,j);
+    //        scanf("%d",&matriz[i][j]);
+    //    }
+    // }
+
+    if (filas == columnas){
+        for (int i=0; i<filas; i++){
+            for (int j=0; j<columnas; j++){
+                if (matriz[i][j]== matriz[j][i]){
+                    flag += 1;
+                    printf("%d\n",flag);
+                }else {flag = 0;}
+            }
+        }
+        if(flag == (filas*columnas)){
+            printf("La matriz es Simetrica");
+        }else {
+            printf("La matriz no es simetrica");
+        }
+    }
+
+return 0;
+}
