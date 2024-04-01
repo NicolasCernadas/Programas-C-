@@ -1,0 +1,28 @@
+# include<stdio.h>
+
+int main(){
+    int matriz[3][3]={{1,2,3},
+                      {4,5,6},
+                      {7,8,9}};
+    int matriz2[3][3]={{1,2,3},
+                      {4,5,6},
+                      {7,8,9}};
+    int matriz3[3][3];
+
+    for (int i=0; i<3; i++){
+        for (int t=0; t<3; t++){
+            matriz3[i][t] = matriz[i][t] + matriz[i][t];
+        }
+    }
+    printf("Matriz1 + Matriz2 = Matriz3\n\n");
+    for (int i=0; i<3; i++){
+        for (int t=0; t<3; t++){
+            printf("%d ",matriz3[i][t]);
+            if (t==2){
+                printf("\n");
+            }
+        }
+    }
+    
+return 0;
+}
