@@ -1,0 +1,83 @@
+--ARRAYS Y LIBRERIA STRING--
+# include<stdio.h>
+# include<string.h>
+# include <stdlib.h>
+
+//Arrays de caracteres
+
+int main(){
+    char cadnumerica[10];
+    int numero;
+    char cadinvertida[]="Nicolas";
+    char cadena[50];
+    char cadena1[]="Nicolas";
+    char cadenaconcat[200];
+    char cadvacia[40];
+    int longitud;
+
+    printf("Ingresa la cadena: ");
+    gets(cadena);
+    printf("\n\n=========\n");
+
+    //verificamos el largo de la cadena
+    longitud = strlen(cadena);
+    printf("\nLongitud de la cadena = %d\n",longitud);
+    printf("\n\n=========\n");
+
+    //printeando el caracter de una celda de memoria en especifico
+    printf("\nPrinteo caracter [0] = %c\n",cadena[0]);
+    printf("\n\n=========\n");
+
+    //copia una cadena de caracteres
+    strcpy(cadvacia, cadena); //Primero ponemos la cadena vacia y despues la cadena a copiar
+    printf("\nCopio el array 'Cadena' a 'CadVacia' = %s\n", cadvacia);
+    printf("\n\n=========\n");
+
+    //Compara cadenas
+    if (strcmp(cadena, cadena1)==0){//"==0" quiere decir que son iguales, "==1" o "!=0" seria que son distintas.
+        printf("\nComparo las cadenas y: son iguales\n");
+        printf("\n\n=========\n");
+    }else {
+        printf("\nComparo las cadenas y: no son iguales\n");
+        printf("\n\n=========\n");
+    }
+
+    //Concatenar arrays
+    //Aca agrego un espacio al final de la cadena copiada para que no se junten
+    longitud = strlen(cadena);
+    cadena[longitud]= ' ';
+    //Primero copio la primera parte en la cadena resultante
+    strcpy(cadenaconcat,cadena);
+    //Ahora la junto con la segunda parte, conformando la tercera
+    strcat(cadenaconcat,cadena1);
+    printf("\nLas cadenas concatenadas: %s\n", cadenaconcat);
+    printf("\n\n=========\n");
+
+    //Invertir una cadena de caracteres
+    printf("\nCadena sin invertir: %s\n", cadinvertida);
+    strrev(cadinvertida);
+    printf("Cadena invertida: %s", cadinvertida);
+    printf("\n\n=========\n");
+
+    //Convierte una cadena a mayusculas
+    strupr(cadena);
+    printf("\n'Cadena' en mayusculas: %s", cadena);
+    printf("\n\n=========\n");
+
+    //Convierte una cadena a minusculas
+    strlwr(cadena);
+    printf("\n'Cadena' en minusculas: %s", cadena);
+    printf("\n\n=========\n");
+
+    //Transformar una cadena de caracteres a enteros o float: "123" ==> '123'
+    //Necesitamos 2 variables, el array y una donde guardar el array convertido a integer o float
+    printf("\nIngresa el array numerico: ");
+    scanf("%s",&cadnumerica);
+    //numero = atof(cadnumerica); //array to float
+    numero = atoi(cadnumerica); //array to integer
+    numero += 1;
+    printf("El numero que ingresaste: '%d', ahora sumandole 1 = '%d'",(numero-1), numero);
+    printf("\n\n=========\n");
+
+return 0;
+}
