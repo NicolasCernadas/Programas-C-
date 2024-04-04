@@ -16,7 +16,8 @@ int main(){
     int longitud;
 
     printf("Ingresa la cadena: ");
-    gets(cadena);
+    gets(cadena); //scanf("%s[^\n]") para guardar hasta el \0
+                 //fflush(stdin) despues de guardar con scanf para limpiar el buffer
     printf("\n\n=========\n");
 
     //verificamos el largo de la cadena
