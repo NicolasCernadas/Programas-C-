@@ -1,0 +1,42 @@
+.8086; <==
+.model small; <==
+.stack 100h; <==
+.data; <==
+						
+	bienvenida db "Programa de lectura de variable",0dh,0ah,'$'; '$' == 24h
+	texto db 255 dup (24h), 0dh, 0ah, '$'
+	
+.code; <==
+	main proc; <==
+		mov ax,@data ; Initalize DS ; <==
+		mov ds,ax; <==
+		
+		mov ah,9 ; DOS Function call to print a message
+		mov dx, offset bienvenida
+		int 21h
+		
+		mov bx,0
+		
+		;Caja de carga
+		carga:
+			mov ah,8
+			int 21h
+			cmp al, 0dh
+			je Fincarga
+			mov texto[bx], al
+			inc bx
+			mov ah,2
+			mov dl, '*'
+			int 21h
+		jmp carga
+		Fincarga:
+		;Fin de caja
+		
+		mov ah,9
+		mov dx, offset texto
+		int 21h
+	
+		mov ax,4C00h ; DOS Function call to exit back to DOS; <==
+		int 21h; <==
+	main endp; <==
+end; <==
