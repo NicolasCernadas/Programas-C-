@@ -1,0 +1,39 @@
+;TASM (NOMBRE DE ARCHIVO)
+;TLINK (NOMBRE DEL ARCHIVO)
+
+.8086; <==
+.model small; <==
+.stack 100h; <==
+.data; <==
+							;'0dh' bajada de linea
+							;'0ah' retorno de carro (?
+							;'$' que lea hasta ahi
+	texto db "Hello, world!",0dh,0ah,'$'; '$' == 24h
+	texto2 db "Como va? ", 0dh, 0ah, '$'
+	
+.code; <==
+	main proc; <==
+		mov ax,@data ; Initalize DS ; <==
+		mov ds,ax; <==
+		
+		mov ah,9 ; DOS Function call to print a message
+		mov dx, offset texto2
+		int 21h
+		
+		mov ah,1
+		int 21h
+		cmp al, 31h ;'1' ;Compara caracter ingresado con AL=1
+		je Hello ;Si son iguales, salta a Hello
+		
+		jmp finPrograma ;Salta a finPrograma
+		
+		Hello:
+		mov ah,9
+		mov dx, offset texto
+		int 21h
+		
+		finPrograma:
+		mov ax,4C00h ; DOS Function call to exit back to DOS; <==
+		int 21h; <==
+	main endp; <==
+end; <==
