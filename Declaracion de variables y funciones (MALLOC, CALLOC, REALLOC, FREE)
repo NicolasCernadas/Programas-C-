@@ -1,0 +1,52 @@
+# include <stdio.h>
+# include <stdlib.h>
+
+void mostrar_array(int *x,int y);
+
+int main(){
+    int *numeros1;
+    int *numeros;
+    int N = 10; //dado por el problema o el usuario
+
+    //Declaracion de variables dinamicas:
+
+    //MALLOC
+    numeros = (int*)malloc(N*sizeof(int));
+    //[nombrevariable] = [tipodato*]malloc[tamaño*cantidaddebytes]
+    //Guarda un determinado numero de bytes (no inicializa, osea que tenemos lo que habia (basura))
+    printf("\nDatos guardados en el array generado con 'Malloc':\n\n==> ");
+    mostrar_array(numeros, N);
+
+    //CALLOC
+    numeros1 = (int*)calloc(N,sizeof(int));
+    //[nombrevariable] = [tipodato*]calloc[tamaño,cantidaddebytes]
+    //Guarda un determinado numero de bytes (inicializados en 0)
+    //'Calloc' es mas lenta (no considerablemente), por inicializar a 0 los elementos
+    printf("\n\nDatos guardados en el array generado con 'Calloc':\n\n==> ");
+    mostrar_array(numeros1, N);
+
+    //REALLOC
+    numeros = (int*)realloc(numeros, N*sizeof(int));
+    //[nombrevariable] = [tipodato*]malloc[nombrevariable, tamaño*cantidaddebytes]
+    //Redimensiona el array a la cantidad determinada (conserva los valores)
+
+    //FREE
+    free(numeros);
+    //free[nombrevariable]
+    //Libera la variable de memoria dinamica para que no ocupe espacio en nuestra memoria RAM
+    printf("\n\nArray 'Numeros' liberado:\n\n==> ");
+    mostrar_array(numeros,N);
+
+    return 0;
+}
+
+//Funcion para mostrar el contenido de cada uno de los arrays
+void mostrar_array(int *x,int y){
+
+    for (int i=0; i<y;i++){
+        printf("%d, ", *(x+i));
+
+    }
+}
+
+
