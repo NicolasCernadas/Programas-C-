@@ -1,0 +1,43 @@
+# include <stdio.h>
+
+int main(){
+    char arr[] = {1,2,3,4,5};
+    char *parr;
+    int a=1;
+    int *p;
+
+    //El puntero, guarda la primera direccion de memoria donde recide lo apuntado (de 'a' en este caso)
+    printf("- PUNTEROS -\n")
+    p=&a;
+    printf("Direc de 'a' = %p", p); //Esto, printeara la direccion de 'a' en hexa
+    printf("\n\n===============\n\n");
+    printf("Valor de 'a' = %d", *p); //Podemos usar el valor de la direccion apuntada utilizando '*'
+    printf("\n\n===============\n\n");
+    printf("Direc de 'p' = %p", &p); //Esto, printeara la direccion de 'p' en hexa
+    printf("\n\n===============\n\n");
+    *p = 10; //Anda a la posicion donde apunta 'p', y ponele un 10
+    printf("Nuevo valor de 'a' = %d", *p);
+    printf("\n\n===============\n\n");
+
+
+    printf("- ARRAYS -\n"); 
+    parr = &arr[0]; //Con este puntero apuntando a la posicion 0 del array, podriamos recorrerlo entero con un 'for'
+                    //o ir pasando por la memoria sumandole 1
+    printf("Espacio [0] = %d\n", *parr);// Esto ya lo conocemos
+    printf("Espacio [1] = %d\n", *(parr + 1)); 
+    //Esto va a printear el valor del siguiente espacio en memoria
+    //Nunca vamos a estar sumandole '1' al puntero, sino que vamos a estar moviendonos '1' espacio en memoria,
+    //ese espacio sera de 1 byte (si hablamos de un 'char'), 4 bytes (si hablamos de un 'int'), 8 bytes (si hablamos
+    //de un double)...y asi con todas las variables.
+
+    //Ejemplos
+    printf("Espacio en memoria del Array: '%p'\n", &arr);
+    printf("A donde apunta el puntero: '%p'\n", parr);
+    printf("Valor de donde apunta el puntero: '%d'\n", *parr);
+    printf("Hacemos (parr+1): '%p'\n", (parr+1)); //Vemos que el espacio en memoria aumenta en '1' por ser tipo 'char'
+    printf("Valor de donde apunta (parr+1): '%d'\n", *(parr+1));
+    
+    
+    
+    return 0;
+}
