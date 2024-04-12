@@ -1,0 +1,13 @@
+DEBUG NORMAL
+tasm (nombre)
+tlink (nombre)
+debug (nombre.exe)
+
+td (nombre programa)
+fn + escp
+f7 avanza de a 1
+
+¡DEBUGGER CHETO!
+tasm /zi (nombre)
+tlink /v (nombre)
+td (nombre.exe)
