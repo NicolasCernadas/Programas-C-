@@ -1,39 +1,100 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+/*    B�squeda binaria */
 
-int main(){
-    int * p, N,flag=0;
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 
-    srand(time(NULL));
-    printf("Tamanio del array:\n");
-    scanf("%d",&N);
-    p = (int*)malloc(N*sizeof(int));
-    for (int i=0; i<N; i++) {
-        printf("dato: ");
-        scanf("%d",&(*(p+i)));
-    //    *(p+i) = rand() % 10 + 1;
-    //    printf("%d |");
-    }
-    for (int i=0; i < N; i++) {
-        if (flag == 0){
-            for (int j=(i+1); j < N; j++) {
-                if (*(p+i) < *(p+j)){
-                    flag = 0;
-                }
-                else {
-                    flag = 1;
-                    break;
-                }
-            }
-        }else {}
-    }
-    if (flag == 0) {
-        printf("El array esta ordenado");
-    } else {
-        printf("El array no esta ordenado");
-    }
+void ordenaelem(int v[], int d);
+void cargaelem(int v[], int d);
+int busquedaBinaria( const int b[], int claveDeBusqueda, int bajo, int alto, int d );
+void emitelem(int v[], int d);
 
-    free(p);
+int main()
+{
+    const int dim=10;
+    int vec[ dim ]; /* crea el arreglo a */
+    int llave; /* valor a localizar en el arreglo a */
+    int resultado; /* variable para almacenar la ubicaci�n de la llave o -1 */
+
+    cargaelem(vec, dim);
+    ordenaelem(vec, dim);
+    emitelem(vec, dim);
+    printf( "Introduzca un n�mero a buscar:\n" );
+    scanf( "%d", &llave );
+    resultado = busquedaBinaria( vec, llave, 0, dim - 1, dim );
+
+    if ( resultado != -1 )
+    {
+        printf( "\n%d se encuentra en la posicion %d del arreglo\n", llave, (resultado+1));
+    }
+    else
+    {
+        printf( "\n%d no se encuentra\n", llave );
+    }
+    getchar();
     return 0;
+
+} /* fin de main */
+
+void cargaelem(int v[], int d)
+{
+    int i;
+    srand(time(NULL));
+    for(i=0; i<d; i++)
+    {
+        v[i] = 1 + rand() % 50;
+    }
+}
+
+void ordenaelem(int v[], int d)
+{
+    int i,j, aux, cambio;
+    /* Ordenamiento*/
+    for (i = 0; i < d-1; i++)
+    {
+        cambio = 0;
+        for (j = 0; j < d-(i+1); j++)
+        {
+            if (v[j] > v[j+1])
+            {
+                aux = v[j];
+                v[j] = v[j+1];
+                v[j+1] = aux;
+                cambio = 1;
+            }
+        }
+    }
+    /* Fin ordenamiento*/
+}
+
+void emitelem(int v[], int d)
+{
+    int i;
+
+    for(i=0; i<d; i++) printf("%d - ",v[i]);
+
+    printf("\n");
+
+}
+
+int busquedaBinaria( const int b[], int claveDeBusqueda, int bajo, int alto, int d )
+{
+    int central;
+    while ( bajo <= alto )
+    {
+        central = ( bajo + alto ) / 2;
+        if ( claveDeBusqueda == b[ central ] )
+        {
+            return central;
+        }
+        else if ( claveDeBusqueda < b[ central ] )
+        {
+            alto = central - 1;
+        }
+        else
+        {
+            bajo = central + 1;
+        }
+    }
+    return -1;
 }
