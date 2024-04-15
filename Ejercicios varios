@@ -1,0 +1,47 @@
+//Ingresar un entero positivo N desde teclado, construir una función para validar el número, generar un array de N reales, con una función y carga aleatoria y otra para emitirlo.
+//Como se haria para crear un array en una funcion y volverlo a llamar afuera con punteros (error 'invalid conversion from int to int*)
+# include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
+
+int cant_elem();
+int*  crea_array(int b);
+void emitir_array(int * a,int b);
+void carga_aleatoria(int * x, int y);
+
+int main(){
+     int *p;
+     int elem;
+     elem = cant_elem();
+     p = crea_array(elem);
+     carga_aleatoria(p, elem);
+    return 0;
+}
+//Ingresar cantidad de elementos
+int cant_elem() {
+    int N;
+    printf("Ingresa la cantidad de elementos que va a tener el array:\n");
+    scanf("%d", &N);
+    return N;
+}
+//Crear el array
+//DEFINICION DE FUNCION PARA CREAR ARRAYS CON PUNTEROS
+int* crea_array(int b) {
+     int * o;
+     o = (int*)malloc(b*sizeof(int));
+     return o;
+}
+//Emitir array por pantalla
+void emitir_array(int * a,int b) {
+     for (int i=0; i<b ; i++) {
+          printf("%d |", *(a+i));
+     }
+}
+//Carga aleatoria del array
+void carga_aleatoria(int * x, int y) {
+     srand(time(NULL));
+     for (int i=0; i<y; i++) {
+          *(x+i) = rand() % 100 ;
+    }
+    emitir_array(x, y);
+}
