@@ -1,6 +1,6 @@
-///Construye un programa que lea una secuencia de números enteros por teclado y los almacene en un array dinámico.
-///A partir de él, se deben crear tres array de modo que en el primero se almacenen los números que dan resto uno al dividirlos por tres, en la segunda los de resto dos, y en la tercera los divisibles por tres.
-///El programa deberá emitir la lista inicial y las tres nuevas listas.
+///Construye un programa que lea una secuencia de nÃºmeros enteros por teclado y los almacene en un array dinÃ¡mico.
+///A partir de Ã©l, se deben crear tres array de modo que en el primero se almacenen los nÃºmeros que dan resto uno al dividirlos por tres, en la segunda los de resto dos, y en la tercera los divisibles por tres.
+///El programa deberÃ¡ emitir la lista inicial y las tres nuevas listas.
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -39,6 +39,7 @@ int main() {
      free(resto3);
      return 0;
 }
+
 //FUNCION DE ELEMENTOS CON RESTO 1 (%3)
 int* resto_uno(int * x, int y) {
      int * p1,aux1=0,j1=0;
@@ -59,6 +60,7 @@ int* resto_uno(int * x, int y) {
       }
 return p1;
 }
+
 //FUNCION DE ELEMENTOS CON RESTO 2 (%3)
 int* resto_dos(int * x, int y) {
 
@@ -80,6 +82,7 @@ int* resto_dos(int * x, int y) {
       }
 return p2;
 }
+
 //FUNCION DE ELEMENTOS CON RESTO 0 (%3)
 int* resto_tres(int * x, int y) {
      int * p3,aux3=0,j3=0;
