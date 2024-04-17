@@ -54,7 +54,6 @@ void ordena_elementos(int * x, int v) {
             }
         }
     }
-
 }
 
 void maximo_elemento(int * x, int v) {
