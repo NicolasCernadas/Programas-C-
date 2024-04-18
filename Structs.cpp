@@ -1,81 +1,60 @@
-# include <stdlib.h>
+//Estructuras
+
 # include <stdio.h>
+# include <stdlib.h>
 
-//Declaracion de un STRUCT
-//struct <nombre del struc>
-//{
-//    
-//    tipo nombrevariable
-//    tipo nombrevariable2
-//    ...
-//
-//}; cierro con punto y coma
+void pide_datos(struct Alumnos x);
 
-struct alumno //struct cargado por programador
-{
-    char nombre[10];
-    char apellido[10];
-    int edad;
+//Structs anidados
+struct Cursada {
+     int numero;
+     char comision;
 };
+//Podemos declarar los miembros de la estructura de 2 formas.
+//Seguido del mismo struct:
+struct Alumnos {
+    char nombre[15];
+    char apellido[15];
+    struct Cursada curso;
+}   alumno1 = {"Jorge", "Sanazi",1,'A'},
+    alumno2 = {"Josefina", "Valdez",2,'B'},
+    //alumnado[x];
 
-struct alumno_a_mano //struct cargado por consola
-{
-    char nombre2[10];
-    char apellido2[10];
-    int edad2;
-};
-
-//Tambien los podemos anidar:
-struct fecha {
-    int dia, anio;
-    char mes[10];
-};
-struct vuelo {
-    char origen[5];
-    char destino[5];
-    int duracion;
-    float precio;
-    struct fecha date;
-};
-
-int main() {
-    int decision;
-    //Podemos declarar de 2 maneras, seguido de la declaracion del array del struct (array a partir de la estructura):
-    struct alumno alumno1 = {"Lionel","Messi",38};
-    printf("%d\n",alumno1.nombre); //Si lo quiero llamar, lo traigo con el nombre del struct.<campo_a_traer>
-
-    //O por consola:
-    struct alumno_a_mano alumno2;
-    printf("Ingresa primero el nombre, despues el apellido y despues la edad: (todo con enter de por medio)\n");
-    scanf("%s",alumno2.nombre2);
-    scanf("%s",alumno2.apellido2);
-    scanf("%d",&alumno2.edad2); //Ahora si ponemos el '&', por que es una variable de tipo entero
-
-    //Structs anidados:
-    struct vuelo vuelo1;
-
-    printf("Ingresa:\n1: Si queres ingresar el origen\n2: Si queres ingresar las fechas\n");
-    printf("Seleccion: ");
-    scanf("%d",&decision);
-
-    switch (decision)
-    {
-        case 1: {
-            printf("Ingresa el Origen de partida: ");
-            scanf("%s",vuelo1.origen);
-            printf("Origen de vuelo: %s", vuelo1.origen);
-            break;
-        }
-        case 2: {
-            printf("Ingresa primero el dia, despues el mes, y despues el anio\n");
-            scanf("%d",&vuelo1.date.dia); // Dentro de la variable 'vuelo1', dentro de 'date', guardo el dia 
-            scanf("%s",vuelo1.date.mes); // "      "           "                  ", guardo el mes
-            scanf("%d",&vuelo1.date.anio); // "      "           "                  ", guardo el anio
-            printf("Dia: %d, Mes: %s, Anio: %d",vuelo1.date.dia,vuelo1.date.mes, vuelo1.date.anio);
-            break;
-        }
-    }
+int main(){
+     //O en el codigo, asi:
+    struct Alumnos alumno3 = {"Matias", "Isoro",1,'A'}, alumno4 = {"Octavio", "Sanazi",2,'A'}; //Rellenamos como un array
+    printf("Nombre: %s\nApellido: %s\nCurso: %d%c\n",alumno3.nombre,alumno3.apellido,alumno3.curso.numero,alumno3.curso.comision);
+     struct Alumnos alumno5;
+    //O con un for:
+    pide_datos(alumno5);
 
     return 0;
 }
 
+void pide_datos( struct Alumnos x) {
+     for (int i=0; i<=4;i++) {
+        if (i=1) {
+            printf("Ingrese el nombre del alumno:");
+            fflush(stdin);
+            scanf("%s",&x.nombre);
+        } else {}
+        if (i=2) {
+            printf("Ingrese el apellido del alumno:");
+            fflush(stdin);
+            scanf("%s",&x.apellido);
+        } else {}
+        if (i=3) {
+            printf("Ingrese el curso:");
+            fflush(stdin);
+            scanf("%d",&x.curso.numero);
+        } else {}
+         if (i=4) {
+            printf("Ingrese la comision:");
+            fflush(stdin);
+            scanf("%c",&x.curso.comision);
+        } else {}
+    }
+    printf("Nombre: %s\nApellido: %s\nCurso: %d%c",x.nombre,x.apellido,x.curso.numero,x.curso.comision);
+
+
+}
