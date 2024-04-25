@@ -1,80 +1,69 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
 
-void creoDim (int * n){
-    do
-    {
-        printf("N%cmero de filas/columnas del array:\n", 163);
-        scanf("%d", n); //como 'n' es un puntero, se guarda sin &
-    }
-    while (*n<=0);
+int pide_columna();
+int pide_fila();
+int ** crea_matriz(int y, int z);
+void emite_matriz(int ** xx, int y, int z);
+
+int main(){
+     int ** pp = NULL, c, f;
+
+     c = pide_columna();
+     f = pide_fila();
+     pp = crea_matriz(c, f);
+     emite_matriz(pp, c,f);
+
+
+return 0;
+}
+int pide_columna() {
+     int y;
+     printf("Cuantas columnas queres que tenga?: ");
+     scanf("%d",&y);
+     if (y<=0) {
+          printf("No se puede asi pa...");
+          exit(-1);
+     }
+return y;
+}
+int pide_fila() {
+     int x;
+     printf("Cuantas columnas queres que tenga?: ");
+     scanf("%d",&x);
+     if (x<=0) {
+          printf("No se puede asi pa...");
+          exit(-1);
+     }
+return x;
 }
 
-int ** creoMat(int nFilas, int nCols){
-    int ** ppa, f;
-    /* Asignar memoria para el array de punteros */
-    ppa = (int **)malloc(nFilas * sizeof(int *));
+// Crea la matriz dinamica a travez de un puntero a puntero
+int ** crea_matriz(int col, int fil) {
+     int ** xx;
+    
+     /* Definimos un vector de punteros. */
+     xx = (int**)malloc(fil*sizeof(int*)); //Primero creamos la cantidad de filas
+     for(int i=0; i<fil; i++) { //En base a la cantidad de filas, creamos las columnas que va a tener la matriz
+          xx[i]=(int*)malloc(col*sizeof(int));
+     }
+     /*Carga matriz con 0's en este caso*/
+     for (int i=0; i<fil; i++){ //Primero por filas
+          for(int j=0; j<col; j++) { //Despues por columnas
+               xx[i][j]=0;
+          }
+     }
 
-    /* Asignar memoria para cada una de las filas */
-    for (f = 0; f < nFilas; f++)
-        ppa[f] = (int *)malloc(nCols * sizeof(int));
-
- return ppa; //tiene que devolver un elemento del mismo tipo que la funcion: (int **)
+     return xx; //Devolvemos el puntero ya cargado, se puede cargar a parte
 }
 
-
-void cargoMat(int ** ppa, int nFilas, int nCols)
-{
-    int f,c;
-    srand(time(NULL));
-    /* Inicializamos el array */
-    for ( f = 0; f < nFilas; f++ )
-    {
-        for ( c = 0; c < nCols; c++ )
-        {
-            ppa[f][c] = 10 + rand() % 99;
-            //O podria ser manualmente
-            //printf("ingrese el dato[%d][%d]\n", f, c);
-            //scanf("%d", ppa[f][c]);
-        }
-    }
-}
-
-
-void emitoMat(int ** ppa, int nFilas, int nCols)
-{
-    int f,c;
-    for ( f = 0; f < nFilas; f++ )
-    {
-        printf("\n");
-        for ( c = 0; c < nCols; c++ )
-            printf("dato[%d][%d]--> %d | ",f,c, ppa[f][c]);
-    }
-
-}
-
-void liberoMem(int ** ppa, int nFilas){
-    int f;
-    /* Liberar la memoria asignada a cada una de las filas */
-    for ( f = 0; f < nFilas; f++ ) {
-        free(ppa[f]);
-    }
-    /* Liberar la memoria asignada al array de punteros */
-    free(ppa);
-}
-
-int main()
-{
-    int **pp = NULL;
-    int fil, col;
-    creoDim(&fil); //Como la funcion es un void, pasa la direccion de la variable para que se guarde sin retornar
-    creoDim(&col);
-    pp=creoMat(fil,col); //pp es int **, la funcion es int **
-    cargoMat(pp,fil,col);
-    emitoMat(pp,fil,col);
-    liberoMem(pp,fil);
-    getchar();
-    return 0;
+void emite_matriz(int ** xx, int y, int z) {
+     for (int i=0; i<z; i++) {
+          for (int j=0; j<y; j++) {
+               printf("%d |",xx[i][j]); //emitimos la matriz, vease que se esta tratando como un array cualquiera, sin importar que sea **
+          }
+          printf("\n");
+     }
 }
 
