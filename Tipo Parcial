@@ -1,0 +1,111 @@
+# include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
+# define FILAS 3 //sucursales
+# define COLUMNAS 12 //meses
+
+//CARGA DE ESTRUCTURAS
+struct sucursal {
+    int id_sucursal;
+    char ciudad[30];
+    float desc_mes[30];
+    float total_desc_mes=0;
+    float prom_desc_mes=0;
+}sucursales[FILAS];
+
+struct gerente {
+    int id_sucursal;
+    char nombre_gerente[30];
+};
+
+struct anio {
+    char mes[20];
+}mes[COLUMNAS] = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};;
+
+//CARGA DE FUNCIONES
+int * crea_array();
+int ** crea_matriz();
+void carga_struct(struct sucursal x[]);
+void muestra_struct(struct sucursal x[],struct anio y[]);
+int ** carga_matriz(int ** xx);
+void muestra_matriz(int ** xx);
+
+//FUNCION PRINCIPAL
+int main() {
+    int ** pp;
+    int * posiciones;
+    posiciones = crea_array();
+    pp = crea_matriz();
+    carga_struct(sucursales);
+    muestra_struct(sucursales, mes);
+    carga_matriz(pp);
+    muestra_matriz(pp);
+return 0;
+}
+//GENERO MATRIZ
+int ** carga_matriz(int ** xx){
+    for (int i=0; i<FILAS; i++) {
+        for (int j=0; j<COLUMNAS; j++ ) {
+            xx[i][j] = rand()%100;
+        }
+    }
+}
+//GENERO ARRAY DE -1
+int * crea_array() {
+    int * p;
+    p = (int*)malloc(COLUMNAS*sizeof(int));
+    printf("Array de posiciones:\n");
+    for (int i=0; i<COLUMNAS; i++) {
+        p[i] = -1;
+        printf("%d |",p[i]);
+    }
+    printf("\n");
+return p;
+}
+//CREO MATRIZ
+int ** crea_matriz() {
+    int ** xx;
+    xx = (int**)malloc(FILAS*sizeof(int*));
+    for (int i=0; i<FILAS; i++) {
+        xx[i] = (int*)malloc(COLUMNAS*sizeof(int));
+    }
+return xx;
+}
+
+void muestra_matriz(int ** xx) {
+    for (int i=0; i<FILAS; i++) {
+        for (int j=0; j<COLUMNAS; j++ ) {
+            printf("%d |", xx[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+//CARGO STRUCT
+void carga_struct(struct sucursal x[]) {
+    srand(time(NULL));
+    for (int i=0; i<FILAS; i++) {
+        printf("Ingresa el ID de la sucursal: ");
+        scanf("%d",&x[i].id_sucursal);
+        fflush(stdin);
+        printf("Ingresa la ciudad de la sucursal: ");
+        gets(x[i].ciudad);
+        fflush(stdin);
+        for (int j=0; j<30; j++){
+            x[i].desc_mes[j] = rand()%100;
+        }
+    }
+}
+//MUESTRO MATRIZ
+void muestra_struct(struct sucursal x[],struct anio y[]) {
+    printf("\n");
+    for (int i=0; i<FILAS; i++) {
+        printf("ID de la sucursal: %d\n",x[i].id_sucursal);
+        printf("Provincia de la sucursal: %s\n",x[i].ciudad);
+        printf("Ventas:\n");
+        for (int j=0; j<COLUMNAS; j++) {
+            printf("%s: %.2f\n",y[j],x[i].desc_mes[j]);
+        }
+        printf("\n");
+    }
+}
