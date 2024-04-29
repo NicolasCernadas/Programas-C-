@@ -1,0 +1,45 @@
+#include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+
+typedef struct {
+     char nombre[20];
+     char apellido[20];
+     char * nombrecompleto;
+     float calificaciones[5];
+     float promcal=0;
+     float mayorcal=0;
+}alumnado;
+
+void carganombre(alumnado x[]);
+
+int main(){
+     alumnado alumno[5];
+// carganombre(&alumno); Esto seria si queremos pasar una estructura de 1 solo elemento, la pasamos con &
+//   void carganombre(alumnado * x){
+//     printf("Ingresa el nombre del alumno: ");
+//     scanf("%s",x->nombre);
+//     fflush(stdin);
+//     printf("Ingresa el apellido del alumno: ");
+//     scanf("%s",x->apellido);
+//     fflush(stdin);
+//     x->nombrecompleto = strcat(x->apellido, x->nombre);
+//     strupr(x->nombrecompleto);
+//     printf("Nombre completo: %s",x->nombrecompleto);
+//   }
+
+     //Y asi seria si tenemos un array de estructuras, solo pasamos el nombre, y a la funcion se lo pasamos con [], se llama a los elementos con '.' y no con '->'
+    carganombre(alumno);
+return 0;
+}
+void carganombre(alumnado  x[]){
+     printf("Ingresa el nombre del alumno: ");
+     scanf("%s",x[0].nombre);
+     fflush(stdin);
+     printf("Ingresa el apellido del alumno: ");
+     scanf("%s",x[0].apellido);
+     fflush(stdin);
+     x[0].nombrecompleto = strcat(x[0].apellido, x[0].nombre);
+     strupr(x[0].nombrecompleto);
+     printf("Nombre completo: %s",x[0].nombrecompleto);
+}
