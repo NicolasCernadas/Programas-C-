@@ -1,0 +1,262 @@
+# include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
+# include <string.h>
+# define N 5
+# define M 6
+# define T 30
+
+// ESTRUCTURAS
+
+//Sucursales
+typedef struct {
+    int ID;
+    char barrio[T];
+    float repartos_varios[T];
+    float total_repartos;
+    float prom_repartos;
+}repartos;
+
+//Gerentes
+typedef struct {
+    int ID_encargado;
+    int ID;
+    char nombre[T];
+}gerencia;
+
+//DECLARACION DE PROTOTIPOS DE FUNCION
+
+//prototipo de funciones para Sucursales
+void carga_sucursal(repartos x[]);
+void carga_repartos(repartos x[]);
+void emite_repartos(repartos x[]);
+void repartos_x_semana(repartos x[]);
+//prototipos de funciones para Gerentes
+void carga_gerentes(gerencia x[]);
+void emite_gerentes(gerencia x[]);
+//arrays
+int * genera_vector();
+void carga_vector(int * x);
+void emite_vector(int * x);
+void libera_array(int * x);
+//matriz
+float ** genera_matriz();
+void carga_matriz(float ** xx);
+void emite_matriz(float ** xx);
+void libera_matriz(float ** xx);
+
+int main() {
+    int * v;
+    float ** vv;
+    srand(time(NULL)); //Para generar aleatoriamente los repartos
+    //sucursales
+    repartos delivery[N]; //genero el array de sucursales
+    gerencia encargados[N]; //genero el array de gerentes
+    carga_sucursal(delivery);
+    carga_repartos(delivery);
+    emite_repartos(delivery);
+    repartos_x_semana(delivery);
+    //encargados
+    carga_gerentes(encargados);
+    emite_gerentes(encargados);
+    //array dinamico (1 dimension)
+    v = genera_vector();
+    carga_vector(v);
+    emite_vector(v);
+    //matriz de datos
+    vv = genera_matriz();
+    carga_matriz(vv);
+    emite_matriz(vv);
+    libera_array(v);
+    libera_matriz(vv);
+return 0;
+}
+
+//DECLARACION DE FUNCIONES
+
+//Funcion de carga de datos manuales para SUCURSALES
+void carga_sucursal(repartos x[]) {
+    x[0].ID = 1001;
+    strcpy(x[0].barrio,"Barracas");
+    x[1].ID = 1002;
+    strcpy(x[1].barrio,"Ciudadela");
+    x[2].ID = 1003;
+    strcpy(x[2].barrio,"Almagro");
+    x[3].ID = 1004;
+    strcpy(x[3].barrio,"Palermo");
+    x[4].ID = 1005;
+    strcpy(x[4].barrio,"Colegiales");
+
+}
+//Carga de repartos aleatorios
+void carga_repartos(repartos x[]) {
+    for (int i=0; i<N; i++) {
+        for (int j=0; j<T; j++) {
+            x[i].repartos_varios[j] = ((rand()% 875)/10.0f); //Carga numeros random con coma
+        }
+    }
+}
+//Emision de repartos
+void emite_repartos(repartos x[]) {
+    printf("-- Repartos por dia --\n\n");
+    for (int i=0; i<N; i++) {
+        printf("Sucursal de %s:\nID: %d\nRepartos:\n",x[i].barrio,x[i].ID);
+        for (int j=0; j<T; j++) {
+            printf("%5.2f |",x[i].repartos_varios[j]);
+            if ((j==5) || (j==11) || (j==17) || (j==23) || (j==29)) {
+                printf("\n");
+            }
+        }
+        printf("\n");
+    }
+    getchar();
+}
+//Funcion de carga de datos manuales para GERENTES
+void carga_gerentes(gerencia x[]) {
+    x[0].ID_encargado = 4040; //Carga estatica de datos
+    x[0].ID = 1001;
+    strcpy(x[0].nombre,"Martin");
+    x[1].ID_encargado = 4041;
+    x[1].ID = 1002;
+    strcpy(x[1].nombre,"Lucas");
+    x[2].ID_encargado = 4042;
+    x[2].ID = 1003;
+    strcpy(x[2].nombre,"Sofia");
+    x[3].ID_encargado = 4043;
+    x[3].ID = 1004;
+    strcpy(x[3].nombre,"Clara");
+    x[4].ID_encargado = 4044;
+    x[4].ID = 1005;
+    strcpy(x[4].nombre,"Mateo");
+
+}
+//Emite datos de los gerentes
+void emite_gerentes(gerencia x[]) {
+    printf("==========================\n\n");
+    printf("-- Gerencia --\n\n");
+    for (int i=0; i<N; i++) {
+        printf("Gerente: %s\n",x[i].nombre);
+        printf("ID personal: %d\n",x[i].ID_encargado);
+        printf("ID de la sucursal: %d\n\n",x[i].ID);
+    }
+    getchar();
+}
+//Genero, cargo y emito array
+int * genera_vector() {
+    int * x;
+    x = (int*)malloc(N*sizeof(int));
+    if (x == NULL) {
+        printf("Insuficiente espacio en memoria. El programa se cerrara."); //Me fijo que me alcance el espacio
+        exit(1);
+    }
+return x;
+}
+void carga_vector(int * x) {
+    for (int i=0; i<N; i++) {
+        x[i] = -10;
+    }
+}
+void emite_vector(int * x) {
+    printf("==========================\n\n");
+    printf("-- Array de 1 dimension --\n\n");
+    for (int i=0; i<N; i++) {
+        printf("%d |", x[i]);
+    }
+    getchar();
+}
+//Genero, cargo y emito matriz
+float ** genera_matriz() {
+    float ** xx;
+    xx = (float**)malloc(N*sizeof(float*));
+    if (xx == NULL) {
+        printf("1)Insuficiente espacio en memoria. El programa se cerrara.");
+        exit(1);
+    }
+    for (int i=0; i<N; i++) {
+        if (xx[i] == NULL) {
+            printf("2)Insuficiente espacio en memoria. El programa se cerrara.");
+            exit(1);
+        }
+        xx[i] = (float*)malloc(M*sizeof(float));
+    }
+    return xx;
+}
+void carga_matriz(float ** xx) {
+    for (int i=0; i<N; i++) {
+        for (int j=0; j<M; j++) {
+            xx[i][j] = ((rand()% 875)/10.0f);
+        }
+    }
+}
+void emite_matriz(float ** xx) {
+    printf("==========================\n\n");
+    printf("-- Matriz de datos (mes anterior) --\n\n");
+    for (int i=0; i<N; i++) {
+        for (int j=0; j<M; j++) {
+            printf("%.2f |",xx[i][j]);
+        }
+        printf("\n");
+    }
+    getchar();
+}
+void repartos_x_semana(repartos x[]) {
+    float contador=0;
+    int aux3;
+    int aux2;
+    int k=1;
+    int aux;
+    float maximo = 0;
+    float * maxsem;
+    printf("==========================\n\n");
+    maxsem = (float*)calloc(M, sizeof(float)); //genero un array para cargar los datos de la semana maxima
+    printf("\n");
+    printf("-- Repartos x semana -- \n");
+    for (int i=0; i<N; i++) {
+        k=1;
+        printf("\nSucursal de %s\n\n",x[i].barrio);
+        for (int j=0; j<T; j++) {
+            contador += x[i].repartos_varios[j];
+            if ((j==5) || (j==11) || (j==17) || (j==23) || (j==29)) {
+                printf("%d%c semana: %.2f repartos\n",k,248, contador);
+                k++;
+                aux = (j-5);
+                if (contador > maximo) {
+                	maximo = contador;
+                    for (int o=0; o<M; o++) {
+                        *(maxsem + o) = x[i].repartos_varios[aux];
+                        aux2 = i;
+                        aux3 = (k-1);
+                        aux++;
+                    }
+                }
+                contador = 0;
+            }
+        }
+    }
+    contador = 0;
+    for (int i=0; i<M; i++) {
+		contador += *(maxsem + i);
+    }
+    printf("\n -- La semana de mas repartos fue la %d semana de la sucursal de %s, con: %.2f repartos -- \n",aux3,x[aux2].barrio, contador);
+    printf("Con:\n");
+    for (int i=0; i<M; i++) {
+		printf("%.2f repartos el %1d%c dia\n",*(maxsem+i),i+1,248);
+    }
+    printf("\n");
+
+}
+
+//Liberacion de memoria
+void libera_array(int * x) {
+    free(x);
+    printf("==========================\n\n");
+    printf("Memoria del array liberada.\n");
+}
+void libera_matriz(float ** xx) {
+    for (int i=0; i<N; i++) {
+        free(xx[i]);
+    }
+    free(xx);
+    printf("Memoria de la matriz liberada.\n");
+}
+
