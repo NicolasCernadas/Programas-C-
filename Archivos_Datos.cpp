@@ -36,6 +36,7 @@ int main() {
 		printf("No se pudo reservar la memoria\n");
 		exit(1);
 	}
+	//Cargo lo del archivo al cmd
 	for (int i=0; !feof(pfile); i++) {
 		vaciar(nombre); //Ya la habiamos llenado para contar las lineas
 		aux = '0';
