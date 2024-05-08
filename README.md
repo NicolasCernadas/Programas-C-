@@ -1,1 +1,1 @@
-![image](https://github.com/NicolasCernadas/Programas-C-/assets/144465221/744c49f9-5081-44fd-803a-4dc3bdcab0dd)
+![image](https://github.com/NicolasCernadas/Programas-C-/assets/144465221/1e8f8581-e17a-457a-9a11-fbdce911bc36)
