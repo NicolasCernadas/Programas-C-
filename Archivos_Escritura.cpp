@@ -21,7 +21,7 @@ int main() {
 			}
 		}
 	} while (num!=0);
-	fflush(stdin);
+	getchar();
 	printf("Introduce ahora una frase: ");
 	fgets(frase, 50, stdin);
 	fflush(stdin);
